@@ -5,6 +5,8 @@ const float R1 = 1;
 const float R2 = 2;
 const float K2 = 5;
 // Created by: KKQC
+// Created in free time for fun, maybe i will update it one point. 
+// There are probably more bugs then avg room temperature... in kelvin
 // Calculate K1 based on screen size: the maximum x-distance occurs
 // roughly at the edge of the torus, which is at x=R1+R2, z=0.  we
 // want that to be displaced 3/8ths of the width of the screen, which
@@ -13,7 +15,8 @@ const float K2 = 5;
 // screen_width*K2*3/(8*(R1+R2)) = K1
 const float K1 = screen_width*K2*3/(8*(R1+R2));
 
-render_frame(float A, float B) {
+render_frame(float A, float B) 
+{ // best way for {},
   // precompute sines and cosines of A and B
   float cosA = cos(A), sinA = sin(A);
   float cosB = cos(B), sinB = sin(B);
@@ -22,12 +25,14 @@ render_frame(float A, float B) {
   float zbuffer[0..screen_width, 0..screen_height] = 0;
 
   // theta goes around the cross-sectional circle of a torus
-  for (float theta=0; theta < 2*pi; theta += theta_spacing) {
+  for (float theta=0; theta < 2*pi; theta += theta_spacing) 
+  {
     // precompute sines and cosines of theta
     float costheta = cos(theta), sintheta = sin(theta);
 
     // phi goes around the center of revolution of a torus
-    for(float phi=0; phi < 2*pi; phi += phi_spacing) {
+    for(float phi=0; phi < 2*pi; phi += phi_spacing) 
+    {
       // precompute sines and cosines of phi
       float cosphi = cos(phi), sinphi = sin(phi);
     
@@ -55,10 +60,12 @@ render_frame(float A, float B) {
         sinA*sintheta + cosB*(cosA*sintheta - costheta*sinA*sinphi);
       // L ranges from -sqrt(2) to +sqrt(2).  If it's < 0, the surface
       // is pointing away from us, so we won't bother trying to plot it.
-      if (L > 0) {
+      if (L > 0) 
+      {
         // test against the z-buffer.  larger 1/z means the pixel is
         // closer to the viewer than what's already plotted.
-        if(ooz > zbuffer[xp,yp]) {
+        if(ooz > zbuffer[xp,yp]) 
+        {
           zbuffer[xp, yp] = ooz;
           int luminance_index = L*8;
           // luminance_index is now in the range 0..11 (8*sqrt(2) = 11.3)
@@ -74,8 +81,10 @@ render_frame(float A, float B) {
   // bring cursor to "home" location, in just about any currently-used
   // terminal emulation mode
   printf("\x1b[H");
-  for (int j = 0; j < screen_height; j++) {
-    for (int i = 0; i < screen_width; i++) {
+  for (int j = 0; j < screen_height; j++) 
+  {
+    for (int i = 0; i < screen_width; i++) 
+    {
       putchar(output[i,j]);
     }
     putchar('\n');
