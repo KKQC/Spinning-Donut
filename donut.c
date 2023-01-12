@@ -4,6 +4,7 @@ const float phi_spacing   = 0.02;
 const float R1 = 1;
 const float R2 = 2;
 const float K2 = 5;
+// Created by: KKQC
 // Calculate K1 based on screen size: the maximum x-distance occurs
 // roughly at the edge of the torus, which is at x=R1+R2, z=0.  we
 // want that to be displaced 3/8ths of the width of the screen, which
