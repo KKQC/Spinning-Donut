@@ -16,7 +16,7 @@ const float K2 = 5;
 const float K1 = screen_width*K2*3/(8*(R1+R2));
 
 render_frame(float A, float B) 
-{ // best way for {},
+{ // best way for writting for {},
   // precompute sines and cosines of A and B
   float cosA = cos(A), sinA = sin(A);
   float cosB = cos(B), sinB = sin(B);
